@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Haqdar – Know what you are owed</title>
+<meta name="description" content="Find the government schemes you qualify for, the documents you need and where to apply. English, Tamil, Hindi. Works offline. Nothing leaves your device.">
+<style>
+:root{--ink:#14213d;--muted:#5b6478;--bg:#fffaf0;--card:#fff;--line:#eadfc8;--saffron:#f59e0b;--saffron-d:#b45309;--green:#0f766e;--green-bg:#e6f4f1;--amber-bg:#fff4d6;--r:16px}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans Tamil","Noto Sans Devanagari",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{display:flex;justify-content:space-between;align-items:center;padding:14px clamp(16px,4vw,40px);position:sticky;top:0;background:rgba(255,250,240,.95);backdrop-filter:blur(6px);border-bottom:1px solid var(--line);z-index:5}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px}.logo span{color:var(--saffron)}
+.lang button{border:1px solid var(--line);background:#fff;padding:7px 12px;font-size:14px;cursor:pointer;color:var(--ink)}
+.lang button:first-child{border-radius:10px 0 0 10px}.lang button:last-child{border-radius:0 10px 10px 0}
+.lang button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.hero{padding:34px clamp(16px,4vw,40px) 10px;max-width:1200px;margin:auto}
+.hero h1{font-size:clamp(26px,4.5vw,44px);line-height:1.15;margin:0 0 10px;letter-spacing:-1px}
+.hero p{color:var(--muted);max-width:720px;margin:0 0 10px;font-size:17px}
+.priv{display:inline-block;background:var(--green-bg);color:var(--green);padding:6px 12px;border-radius:999px;font-size:14px;font-weight:600}
+.demo{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.demo b{font-size:14px;color:var(--muted)}
+.demo button{border:1.5px dashed var(--saffron);background:#fff;border-radius:999px;padding:7px 14px;cursor:pointer;font-size:14px;color:var(--ink)}
+.demo button:hover{background:var(--amber-bg)}
+main{display:grid;grid-template-columns:minmax(300px,400px) 1fr;gap:24px;max-width:1200px;margin:20px auto 40px;padding:0 clamp(16px,4vw,40px);align-items:start}
+@media(max-width:860px){main{grid-template-columns:1fr}}
+#form{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;position:sticky;top:76px}
+@media(max-width:860px){#form{position:static}}
+h2{margin:0 0 14px;font-size:20px}
+.field{margin-bottom:14px}
+.field label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+.hint{font-size:12px;color:var(--muted);margin-top:4px}
+input[type=number],select{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;background:#fff;color:var(--ink)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{flex:1 1 auto;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;font-size:15px;cursor:pointer;color:var(--ink);min-height:44px}
+.seg button.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+@media(max-width:620px){.stats{grid-template-columns:repeat(2,1fr)}}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-size:24px;letter-spacing:-.5px}.stat span{font-size:12px;color:var(--muted)}
+.stat.hl{background:var(--ink);color:#fff;border-color:var(--ink)}.stat.hl span{color:#cbd5e1}
+.card{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--green);border-radius:var(--r);padding:16px 18px;margin-bottom:12px}
+.card.maybe{border-left-color:var(--saffron)}
+.card .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card h3{margin:0;font-size:18px}
+.badge{white-space:nowrap;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--green-bg);color:var(--green)}
+.maybe .badge{background:var(--amber-bg);color:var(--saffron-d)}
+.ben{margin:6px 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;background:#f3efe4;border-radius:999px;padding:3px 10px;color:#4a4331}
+.actions{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
+details summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--saffron-d);margin-top:10px}
+details ul{margin:8px 0 6px;padding-left:20px;font-size:14px}
+details a{color:var(--green);font-weight:600}
+.btn{border:1.5px solid var(--ink);background:#fff;border-radius:12px;padding:9px 14px;font-size:14px;cursor:pointer;color:var(--ink);font-weight:600}
+.btn.pri{background:var(--ink);color:#fff}
+.btn.sm{padding:5px 10px;font-size:13px;margin-top:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;margin:18px 0}
+.bar{height:8px;background:#efe8d6;border-radius:99px;overflow:hidden;margin:8px 0 12px}.bar i{display:block;height:100%;background:var(--green);transition:width .3s}
+.doc{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #f1ead8}
+.doc input{width:20px;height:20px;accent-color:var(--green)}
+.doc small{margin-left:auto;color:var(--muted);white-space:nowrap}
+ol.road{padding-left:20px;margin:0}ol.road li{margin-bottom:8px}
+.tools{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+footer{max-width:1200px;margin:0 auto 40px;padding:0 clamp(16px,4vw,40px);color:var(--muted);font-size:13px}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+@media print{header,#form,.demo,.tools,.actions,.hero p,.priv,details summary{display:none!important}main{display:block}details{display:block}details>*{display:block}body{background:#fff}.card{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Haq<span>dar</span></div>
+  <div class="lang" id="lang"></div>
+</header>
+
+<section class="hero">
+  <h1 id="tag"></h1>
+  <p id="sub"></p>
+  <span class="priv" id="priv"></span>
+  <div class="demo" id="demo"></div>
+</section>
+
+<main>
+  <form id="form" onsubmit="return false"></form>
+  <section id="results"></section>
+</main>
+<footer id="disc"></footer>
+
+<script>
+/* ---------------- i18n ---------------- */
+const T={
+en:{tag:"Find the government schemes you qualify for in 60 seconds",sub:"Answer a few simple questions. Get the central and state schemes that fit you, the exact documents to carry, and where to apply — all in one place.",priv:"🔒 Your answers never leave this device. Works offline.",demo:"Try an example:",p1:"Lakshmi, homemaker",p2:"Murugan, farmer",p3:"Ravi, street vendor",p4:"Priya, student",aboutYou:"About you",
+f_age:"Age",f_gender:"Gender",f_state:"State",f_area:"Where do you live?",f_occ:"What do you do?",f_income:"Household income per year",f_cat:"Social category",f_ration:"Ration card",f_bank:"Do you have a bank account?",f_pucca:"Do you own a pucca house?",f_land:"Do you own farmland?",f_tax:"Do you pay income tax?",f_pf:"Member of PF / ESI / NPS?",f_girl:"Daughter under 10 years?",f_disab:"Any disability?",f_lpg:"Already have an LPG connection?",
+h_income:"Add up every earning member of the household",h_ration:"Priority / BPL means an AAY or PHH card",h_tax:"Many schemes exclude income-tax payers",h_pf:"Provident fund, ESI or National Pension System",
+yes:"Yes",no:"No",o_gender_F:"Woman",o_gender_M:"Man",o_gender_O:"Other",o_state_TN:"Tamil Nadu",o_state_OT:"Other state",o_area_rural:"Rural",o_area_urban:"Urban",o_cat_GEN:"General",o_cat_OBC:"OBC",o_cat_SC:"SC",o_cat_ST:"ST",o_ration_pri:"Priority / BPL",o_ration_non:"Non-priority",o_ration_none:"No card",
+o_occ_farmer:"Farmer",o_occ_worker:"Daily-wage / unorganised worker",o_occ_self:"Self-employed / small business",o_occ_artisan:"Artisan / craftsperson",o_occ_vendor:"Street vendor",o_occ_student:"Student",o_occ_salaried:"Salaried job",o_occ_homemaker:"Homemaker",o_occ_retired:"Retired",o_occ_unemployed:"Looking for work",
+inc0:"Up to ₹1 lakh",inc1:"₹1 – 2.5 lakh",inc2:"₹2.5 – 3 lakh",inc3:"₹3 – 6 lakh",inc4:"₹6 – 18 lakh",inc5:"Above ₹18 lakh",
+resTitle:"Your matches",likely:"Likely eligible",check:"Worth checking",stat_likely:"Likely matches",stat_check:"To verify",stat_cash:"Cash benefit / year",stat_cover:"Insurance & health cover",
+docsApply:"Documents & how to apply",docsLbl:"Documents",applyAt:"Apply via",openSite:"Official site",a_local:"Nearest Common Service Centre (CSC), your bank or the local government office",a_tn:"Tamil Nadu government camps, e-Sevai centres or your taluk office",a_bank:"Your bank branch or post office",
+bagTitle:"Your document bag",bagSub:"Tick what you already have. The ones at the top unlock the most schemes.",bagUsed:"schemes",ready:"ready",
+roadTitle:"Your 3-step plan",s1_bank:"Open a Jan Dhan bank account (zero balance) and link it to Aadhaar.",s1_ok:"Make sure your bank account is linked to Aadhaar and your mobile number.",s2:"Collect these documents first:",s3:"Apply in this order:",
+share:"Share on WhatsApp",print:"Print / Save PDF",listen:"🔊 Listen",copy:"Copy summary",copied:"Copied ✓",noRes:"Fill in your details to see matching schemes.",
+disclaimer:"Guidance only — not an official decision. Rules and amounts change, so confirm on the official site or at your CSC before applying. Haqdar is not affiliated with any government body.",shareHead:"Schemes I may qualify for (via Haqdar):",
+r_age:"Age fits",r_female:"Woman applicant",r_land:"You own farmland",r_notax:"Not an income-tax payer",r_income:"Income within limit",r_pri:"Priority / BPL ration card",r_70:"Age 70+",r_bank:"Has a bank account",r_needbank:"Open a bank account first",r_girl:"Daughter under 10",r_self:"Self-employed",r_vendor:"Street vendor",r_artisan:"Artisan",r_start:"Planning to start a business",r_nohouse:"No pucca house",r_urban:"Urban area",r_student:"Student",r_scst:"SC/ST category",r_worker:"Unorganised worker",r_nopf:"Not in PF/ESI/NPS",r_disab:"Disability",r_tn:"Tamil Nadu resident",r_nolpg:"No LPG connection yet",r_senior:"Age 60+",r_landcap:"Land-holding limits apply",r_vary:"Rules vary — confirm locally",r_nobank:"No bank account yet — start here",r_farm:"Farmer",
+d_aadhaar:"Aadhaar card",d_bank:"Bank passbook (Aadhaar-linked)",d_mobile:"Mobile number linked to Aadhaar",d_photo:"Passport-size photo",d_income:"Income certificate",d_community:"Community (caste) certificate",d_ration:"Ration card",d_land:"Land record (patta / chitta)",d_age:"Age proof (birth / school certificate)",d_disab:"Disability certificate",d_biz:"Business proof / Udyam registration",d_birth:"Daughter's birth certificate",d_student:"Admission / fee receipt and last marksheet",d_trade:"Proof of traditional trade",d_vendor:"Vendor ID / local-body letter",d_house:"Declaration of no pucca house"},
+ta:{tag:"உங்களுக்கு உரிய அரசுத் திட்டங்களை 60 வினாடிகளில் கண்டறியுங்கள்",sub:"சில எளிய கேள்விகளுக்குப் பதிலளியுங்கள். உங்களுக்குப் பொருந்தும் மத்திய, மாநில அரசுத் திட்டங்கள், தேவையான ஆவணங்கள், விண்ணப்பிக்கும் வழி — எல்லாம் ஒரே இடத்தில்.",priv:"🔒 உங்கள் தகவல் இந்தச் சாதனத்தை விட்டு வெளியே செல்லாது. இணையம் இல்லாமலும் இயங்கும்.",demo:"ஓர் எடுத்துக்காட்டு:",p1:"லட்சுமி, இல்லத்தரசி",p2:"முருகன், விவசாயி",p3:"ரவி, தெருவோர வியாபாரி",p4:"பிரியா, மாணவி",aboutYou:"உங்களைப் பற்றி",
+f_age:"வயது",f_gender:"பாலினம்",f_state:"மாநிலம்",f_area:"வசிக்கும் பகுதி",f_occ:"உங்கள் தொழில்",f_income:"குடும்ப ஆண்டு வருமானம்",f_cat:"சமூகப் பிரிவு",f_ration:"குடும்ப அட்டை",f_bank:"வங்கிக் கணக்கு உள்ளதா?",f_pucca:"சொந்தமாகப் பக்கா வீடு உள்ளதா?",f_land:"விவசாய நிலம் உள்ளதா?",f_tax:"வருமான வரி செலுத்துகிறீர்களா?",f_pf:"PF / ESI / NPS உறுப்பினரா?",f_girl:"10 வயதுக்குட்பட்ட மகள் உள்ளாரா?",f_disab:"மாற்றுத்திறன் உள்ளதா?",f_lpg:"ஏற்கனவே LPG இணைப்பு உள்ளதா?",
+h_income:"குடும்பத்தில் சம்பாதிக்கும் அனைவரின் வருமானத்தையும் கூட்டவும்",h_ration:"முன்னுரிமை / BPL என்றால் AAY அல்லது PHH அட்டை",h_tax:"பல திட்டங்களில் வருமான வரி செலுத்துவோர் விலக்கப்படுவர்",h_pf:"வருங்கால வைப்பு நிதி, ESI அல்லது NPS",
+yes:"ஆம்",no:"இல்லை",o_gender_F:"பெண்",o_gender_M:"ஆண்",o_gender_O:"மற்றவை",o_state_TN:"தமிழ்நாடு",o_state_OT:"பிற மாநிலம்",o_area_rural:"கிராமம்",o_area_urban:"நகரம்",o_cat_GEN:"பொது",o_cat_OBC:"OBC",o_cat_SC:"SC",o_cat_ST:"ST",o_ration_pri:"முன்னுரிமை / BPL",o_ration_non:"முன்னுரிமையற்றது",o_ration_none:"அட்டை இல்லை",
+o_occ_farmer:"விவசாயி",o_occ_worker:"தினக்கூலி / அமைப்புசாரா தொழிலாளர்",o_occ_self:"சுயதொழில் / சிறு வணிகம்",o_occ_artisan:"கைவினைஞர்",o_occ_vendor:"தெருவோர வியாபாரி",o_occ_student:"மாணவர்",o_occ_salaried:"சம்பளப் பணி",o_occ_homemaker:"இல்லத்தரசி",o_occ_retired:"ஓய்வு பெற்றவர்",o_occ_unemployed:"வேலை தேடுபவர்",
+inc0:"₹1 லட்சம் வரை",inc1:"₹1 – 2.5 லட்சம்",inc2:"₹2.5 – 3 லட்சம்",inc3:"₹3 – 6 லட்சம்",inc4:"₹6 – 18 லட்சம்",inc5:"₹18 லட்சத்துக்கு மேல்",
+resTitle:"உங்களுக்குப் பொருந்துபவை",likely:"பெரும்பாலும் தகுதி",check:"சரிபார்க்கவும்",stat_likely:"பொருந்தும் திட்டங்கள்",stat_check:"சரிபார்க்க",stat_cash:"ஆண்டு ரொக்க பலன்",stat_cover:"காப்பீடு & மருத்துவக் காப்பு",
+docsApply:"ஆவணங்கள் & விண்ணப்பிக்கும் முறை",docsLbl:"ஆவணங்கள்",applyAt:"விண்ணப்பிக்க",openSite:"அதிகாரப்பூர்வ தளம்",a_local:"அருகிலுள்ள பொது சேவை மையம் (CSC), வங்கி அல்லது உள்ளூர் அரசு அலுவலகம்",a_tn:"தமிழக அரசு முகாம்கள், இ-சேவை மையங்கள் அல்லது வட்டாட்சியர் அலுவலகம்",a_bank:"உங்கள் வங்கிக் கிளை அல்லது அஞ்சலகம்",
+bagTitle:"உங்கள் ஆவணப் பை",bagSub:"உங்களிடம் உள்ளவற்றைக் குறிக்கவும். மேலே உள்ளவை அதிகத் திட்டங்களுக்குப் பயன்படும்.",bagUsed:"திட்டங்கள்",ready:"தயார்",
+roadTitle:"உங்கள் 3 படித் திட்டம்",s1_bank:"ஜன் தன் வங்கிக் கணக்கு (குறைந்தபட்ச இருப்பு தேவையில்லை) தொடங்கி ஆதாருடன் இணைக்கவும்.",s1_ok:"வங்கிக் கணக்கு ஆதார், கைபேசி எண்ணுடன் இணைந்துள்ளதை உறுதி செய்யவும்.",s2:"முதலில் இந்த ஆவணங்களைத் திரட்டுங்கள்:",s3:"இந்த வரிசையில் விண்ணப்பிக்கவும்:",
+share:"வாட்ஸ்அப்பில் பகிர்",print:"அச்சிடு / PDF",listen:"🔊 கேள்",copy:"சுருக்கத்தை நகலெடு",copied:"நகலெடுக்கப்பட்டது ✓",noRes:"பொருந்தும் திட்டங்களைக் காண உங்கள் விவரங்களை நிரப்பவும்.",
+disclaimer:"வழிகாட்டுதல் மட்டுமே — அதிகாரப்பூர்வ முடிவு அல்ல. விதிகளும் தொகைகளும் மாறலாம்; விண்ணப்பிக்கும் முன் அதிகாரப்பூர்வ தளத்தில் அல்லது CSC-யில் உறுதி செய்யவும். ஹக்தார் எந்த அரசு அமைப்புடனும் தொடர்புடையது அல்ல.",shareHead:"எனக்குத் தகுதியான திட்டங்கள் (Haqdar மூலம்):",
+r_age:"வயது பொருந்துகிறது",r_female:"பெண் விண்ணப்பதாரர்",r_land:"விவசாய நிலம் உள்ளது",r_notax:"வருமான வரி செலுத்தவில்லை",r_income:"வருமானம் வரம்புக்குள்",r_pri:"முன்னுரிமை / BPL அட்டை",r_70:"70+ வயது",r_bank:"வங்கிக் கணக்கு உள்ளது",r_needbank:"முதலில் வங்கிக் கணக்கு தொடங்குங்கள்",r_girl:"10 வயதுக்குட்பட்ட மகள்",r_self:"சுயதொழில்",r_vendor:"தெருவோர வியாபாரி",r_artisan:"கைவினைஞர்",r_start:"தொழில் தொடங்கும் எண்ணம்",r_nohouse:"பக்கா வீடு இல்லை",r_urban:"நகரப் பகுதி",r_student:"மாணவர்",r_scst:"SC/ST பிரிவு",r_worker:"அமைப்புசாரா தொழிலாளர்",r_nopf:"PF/ESI/NPS இல்லை",r_disab:"மாற்றுத்திறன்",r_tn:"தமிழ்நாடு வாசி",r_nolpg:"LPG இணைப்பு இல்லை",r_senior:"60+ வயது",r_landcap:"நில வரம்பு விதிகள் உண்டு",r_vary:"விதிகள் மாறலாம் — உறுதி செய்யவும்",r_nobank:"வங்கிக் கணக்கு இல்லை — இங்கே தொடங்குங்கள்",r_farm:"விவசாயி",
+d_aadhaar:"ஆதார் அட்டை",d_bank:"வங்கிப் புத்தகம் (ஆதார் இணைப்புடன்)",d_mobile:"ஆதாருடன் இணைந்த கைபேசி எண்",d_photo:"பாஸ்போர்ட் அளவு புகைப்படம்",d_income:"வருமானச் சான்று",d_community:"சாதிச் சான்று",d_ration:"குடும்ப அட்டை",d_land:"நில ஆவணம் (பட்டா / சிட்டா)",d_age:"வயதுச் சான்று (பிறப்பு / பள்ளிச் சான்று)",d_disab:"மாற்றுத்திறனாளி சான்றிதழ்",d_biz:"தொழில் சான்று / உத்யம் பதிவு",d_birth:"மகளின் பிறப்புச் சான்று",d_student:"சேர்க்கை / கட்டண ரசீது, கடைசி மதிப்பெண் சான்று",d_trade:"பாரம்பரியத் தொழில் சான்று",d_vendor:"வியாபாரி அடையாளம் / உள்ளாட்சி கடிதம்",d_house:"பக்கா வீடு இல்லை என்ற உறுதிமொழி"},
+hi:{tag:"60 सेकंड में जानिए कौन-सी सरकारी योजनाएँ आपके लिए हैं",sub:"कुछ आसान सवालों के जवाब दीजिए। आपके लिए लागू केंद्र और राज्य की योजनाएँ, ज़रूरी दस्तावेज़ और आवेदन का तरीका — सब एक जगह।",priv:"🔒 आपकी जानकारी इस डिवाइस से बाहर नहीं जाती। बिना इंटरनेट भी चलता है।",demo:"उदाहरण आज़माएँ:",p1:"लक्ष्मी, गृहिणी",p2:"मुरुगन, किसान",p3:"रवि, रेहड़ी विक्रेता",p4:"प्रिया, छात्रा",aboutYou:"आपके बारे में",
+f_age:"उम्र",f_gender:"लिंग",f_state:"राज्य",f_area:"आप कहाँ रहते हैं?",f_occ:"आप क्या करते हैं?",f_income:"परिवार की सालाना आय",f_cat:"श्रेणी",f_ration:"राशन कार्ड",f_bank:"क्या बैंक खाता है?",f_pucca:"क्या अपना पक्का मकान है?",f_land:"क्या खेती की ज़मीन है?",f_tax:"क्या आप आयकर देते हैं?",f_pf:"क्या PF / ESI / NPS के सदस्य हैं?",f_girl:"क्या 10 साल से छोटी बेटी है?",f_disab:"क्या कोई दिव्यांगता है?",f_lpg:"क्या पहले से LPG कनेक्शन है?",
+h_income:"परिवार के सभी कमाने वाले सदस्यों की आय जोड़ें",h_ration:"प्राथमिकता / BPL यानी AAY या PHH कार्ड",h_tax:"कई योजनाओं में आयकरदाता शामिल नहीं होते",h_pf:"भविष्य निधि, ESI या राष्ट्रीय पेंशन प्रणाली",
+yes:"हाँ",no:"नहीं",o_gender_F:"महिला",o_gender_M:"पुरुष",o_gender_O:"अन्य",o_state_TN:"तमिलनाडु",o_state_OT:"अन्य राज्य",o_area_rural:"ग्रामीण",o_area_urban:"शहरी",o_cat_GEN:"सामान्य",o_cat_OBC:"ओबीसी",o_cat_SC:"SC",o_cat_ST:"ST",o_ration_pri:"प्राथमिकता / BPL",o_ration_non:"गैर-प्राथमिकता",o_ration_none:"कार्ड नहीं",
+o_occ_farmer:"किसान",o_occ_worker:"दिहाड़ी / असंगठित मज़दूर",o_occ_self:"स्वरोज़गार / छोटा व्यवसाय",o_occ_artisan:"कारीगर",o_occ_vendor:"रेहड़ी-पटरी विक्रेता",o_occ_student:"छात्र",o_occ_salaried:"नौकरीपेशा",o_occ_homemaker:"गृहिणी",o_occ_retired:"सेवानिवृत्त",o_occ_unemployed:"काम की तलाश में",
+inc0:"₹1 लाख तक",inc1:"₹1 – 2.5 लाख",inc2:"₹2.5 – 3 लाख",inc3:"₹3 – 6 लाख",inc4:"₹6 – 18 लाख",inc5:"₹18 लाख से अधिक",
+resTitle:"आपके लिए योजनाएँ",likely:"संभावित पात्र",check:"जाँच करें",stat_likely:"संभावित योजनाएँ",stat_check:"जाँचने योग्य",stat_cash:"सालाना नकद लाभ",stat_cover:"बीमा व स्वास्थ्य कवर",
+docsApply:"दस्तावेज़ और आवेदन कैसे करें",docsLbl:"दस्तावेज़",applyAt:"आवेदन करें",openSite:"आधिकारिक वेबसाइट",a_local:"नज़दीकी कॉमन सर्विस सेंटर (CSC), आपका बैंक या स्थानीय सरकारी कार्यालय",a_tn:"तमिलनाडु सरकार के शिविर, ई-सेवै केंद्र या तालुक कार्यालय",a_bank:"आपकी बैंक शाखा या डाकघर",
+bagTitle:"आपका दस्तावेज़ बैग",bagSub:"जो आपके पास है उस पर टिक करें। ऊपर वाले सबसे ज़्यादा योजनाओं में काम आते हैं।",bagUsed:"योजनाएँ",ready:"तैयार",
+roadTitle:"आपकी 3-चरण योजना",s1_bank:"जन धन बैंक खाता (ज़ीरो बैलेंस) खुलवाएँ और आधार से लिंक करें।",s1_ok:"सुनिश्चित करें कि बैंक खाता आधार और मोबाइल नंबर से लिंक है।",s2:"पहले ये दस्तावेज़ जुटाएँ:",s3:"इस क्रम में आवेदन करें:",
+share:"व्हाट्सऐप पर भेजें",print:"प्रिंट / PDF",listen:"🔊 सुनें",copy:"सारांश कॉपी करें",copied:"कॉपी हो गया ✓",noRes:"योजनाएँ देखने के लिए अपनी जानकारी भरें।",
+disclaimer:"केवल मार्गदर्शन — आधिकारिक निर्णय नहीं। नियम और राशि बदल सकते हैं, इसलिए आवेदन से पहले आधिकारिक साइट या CSC पर पुष्टि करें। हक़दार किसी सरकारी संस्था से जुड़ा नहीं है।",shareHead:"मैं इन योजनाओं के लिए पात्र हो सकता/सकती हूँ (Haqdar से):",
+r_age:"उम्र उपयुक्त",r_female:"महिला आवेदक",r_land:"खेती की ज़मीन है",r_notax:"आयकरदाता नहीं",r_income:"आय सीमा के भीतर",r_pri:"प्राथमिकता / BPL राशन कार्ड",r_70:"70+ उम्र",r_bank:"बैंक खाता है",r_needbank:"पहले बैंक खाता खुलवाएँ",r_girl:"10 साल से छोटी बेटी",r_self:"स्वरोज़गार",r_vendor:"रेहड़ी-पटरी विक्रेता",r_artisan:"कारीगर",r_start:"नया काम शुरू करने की योजना",r_nohouse:"पक्का मकान नहीं",r_urban:"शहरी क्षेत्र",r_student:"छात्र",r_scst:"SC/ST श्रेणी",r_worker:"असंगठित कामगार",r_nopf:"PF/ESI/NPS में नहीं",r_disab:"दिव्यांगता",r_tn:"तमिलनाडु निवासी",r_nolpg:"LPG कनेक्शन नहीं",r_senior:"60+ उम्र",r_landcap:"भूमि सीमा लागू",r_vary:"नियम बदल सकते हैं — पुष्टि करें",r_nobank:"अभी बैंक खाता नहीं — यहाँ से शुरू करें",r_farm:"किसान",
+d_aadhaar:"आधार कार्ड",d_bank:"बैंक पासबुक (आधार से जुड़ा)",d_mobile:"आधार से जुड़ा मोबाइल नंबर",d_photo:"पासपोर्ट साइज़ फ़ोटो",d_income:"आय प्रमाण पत्र",d_community:"जाति प्रमाण पत्र",d_ration:"राशन कार्ड",d_land:"भूमि रिकॉर्ड (खसरा / खतौनी)",d_age:"आयु प्रमाण (जन्म / स्कूल प्रमाण पत्र)",d_disab:"दिव्यांगता प्रमाण पत्र",d_biz:"व्यवसाय प्रमाण / उद्यम पंजीकरण",d_birth:"बेटी का जन्म प्रमाण पत्र",d_student:"प्रवेश / फ़ीस रसीद और पिछली मार्कशीट",d_trade:"पारंपरिक व्यवसाय का प्रमाण",d_vendor:"विक्रेता पहचान पत्र / स्थानीय निकाय पत्र",d_house:"पक्का मकान न होने की घोषणा"}
+};
+
+/* ---------------- scheme data + rule engine ---------------- */
+const INC=[100000,250000,300000,600000,1800000,Infinity];
+const wl=o=>['worker','vendor','artisan'].includes(o);
+const SCHEMES=[
+{id:'jandhan',w:100,cash:0,cover:0,url:'https://pmjdy.gov.in',a:'a_bank',docs:['aadhaar','photo'],
+ name:{en:'PM Jan Dhan Account',ta:'பிஎம் ஜன் தன் கணக்கு',hi:'पीएम जन धन खाता'},
+ ben:{en:'Zero-balance bank account with RuPay card and accident cover — the key to every other scheme',ta:'குறைந்தபட்ச இருப்பு இல்லாத வங்கிக் கணக்கு, RuPay அட்டை, விபத்துக் காப்பு — மற்ற அனைத்துத் திட்டங்களுக்கும் திறவுகோல்',hi:'ज़ीरो बैलेंस खाता, RuPay कार्ड और दुर्घटना कवर — बाकी सभी योजनाओं की कुंजी'},
+ test:(P)=>!P.bank?{level:'match',why:['nobank']}:null},
+{id:'pmkisan',w:90,cash:6000,cover:0,url:'https://pmkisan.gov.in',a:'a_local',docs:['aadhaar','bank','land','mobile'],
+ name:{en:'PM-KISAN Samman Nidhi',ta:'பிஎம் கிசான் சம்மான் நிதி',hi:'पीएम किसान सम्मान निधि'},
+ ben:{en:'₹6,000 a year in 3 instalments, straight to your bank account',ta:'ஆண்டுக்கு ₹6,000, 3 தவணைகளில் நேரடியாக வங்கிக் கணக்கில்',hi:'साल में ₹6,000, 3 किस्तों में सीधे बैंक खाते में'},
+ test:(P)=>P.land&&!P.tax?{level:'match',why:['land','notax']}:null},
+{id:'kmut',w:90,cash:12000,cover:0,url:null,a:'a_tn',docs:['aadhaar','ration','bank'],
+ name:{en:'Kalaignar Magalir Urimai Thogai (Tamil Nadu)',ta:'கலைஞர் மகளிர் உரிமைத் தொகை',hi:'कलैग्नार महिला उरिमै थोगई (तमिलनाडु)'},
+ ben:{en:'₹1,000 every month for women heads of families',ta:'குடும்பத் தலைவியாக உள்ள பெண்களுக்கு மாதம் ₹1,000',hi:'परिवार की मुखिया महिलाओं को हर महीने ₹1,000'},
+ test:(P,i)=>(P.state==='TN'&&P.gender==='F'&&P.age>=21&&!P.tax&&i<=250000)?(P.land?{level:'maybe',why:['tn','female','income','landcap']}:{level:'match',why:['tn','female','income','notax']}):null},
+{id:'pmjay',w:85,cash:0,cover:500000,url:'https://pmjay.gov.in',a:'a_local',docs:['aadhaar','ration','mobile'],
+ name:{en:'Ayushman Bharat (PM-JAY)',ta:'ஆயுஷ்மான் பாரத் (PM-JAY)',hi:'आयुष्मान भारत (PM-JAY)'},
+ ben:{en:'Free hospital treatment up to ₹5 lakh per family per year',ta:'குடும்பத்துக்கு ஆண்டுக்கு ₹5 லட்சம் வரை இலவச மருத்துவமனை சிகிச்சை',hi:'प्रति परिवार प्रति वर्ष ₹5 लाख तक मुफ़्त अस्पताल इलाज'},
+ test:(P,i)=>P.age>=70?{level:'match',why:['r70']}:((P.ration==='pri'||i<=250000)?{level:'maybe',why:[P.ration==='pri'?'pri':'income','vary']}:null)},
+{id:'ujjwala',w:70,cash:0,cover:0,url:'https://www.pmuy.gov.in',a:'a_local',docs:['aadhaar','ration','bank','photo'],
+ name:{en:'PM Ujjwala Yojana (free LPG)',ta:'பிஎம் உஜ்ஜ்வலா யோஜனா (இலவச LPG)',hi:'पीएम उज्ज्वला योजना (मुफ़्त LPG)'},
+ ben:{en:'Free LPG connection for women from poor households',ta:'ஏழைக் குடும்பப் பெண்களுக்கு இலவச LPG இணைப்பு',hi:'गरीब परिवार की महिलाओं को मुफ़्त LPG कनेक्शन'},
+ test:(P,i)=>(P.gender==='F'&&P.age>=18&&!P.lpg)?(P.ration==='pri'?{level:'match',why:['female','pri','nolpg']}:(i<=250000?{level:'maybe',why:['female','income','nolpg']}:null)):null},
+{id:'pmsby',w:60,cash:0,cover:200000,url:'https://jansuraksha.gov.in',a:'a_bank',docs:['aadhaar','bank'],
+ name:{en:'PM Suraksha Bima Yojana',ta:'பிஎம் சுரக்ஷா பீமா',hi:'पीएम सुरक्षा बीमा योजना'},
+ ben:{en:'₹2 lakh accident cover for just ₹20 a year',ta:'ஆண்டுக்கு வெறும் ₹20-க்கு ₹2 லட்சம் விபத்துக் காப்பீடு',hi:'सिर्फ़ ₹20 सालाना में ₹2 लाख का दुर्घटना बीमा'},
+ test:(P)=>(P.age>=18&&P.age<=70)?(P.bank?{level:'match',why:['age','bank']}:{level:'maybe',why:['age','needbank']}):null},
+{id:'pmjjby',w:60,cash:0,cover:200000,url:'https://jansuraksha.gov.in',a:'a_bank',docs:['aadhaar','bank'],
+ name:{en:'PM Jeevan Jyoti Bima Yojana',ta:'பிஎம் ஜீவன் ஜோதி பீமா',hi:'पीएम जीवन ज्योति बीमा योजना'},
+ ben:{en:'₹2 lakh life cover for about ₹436 a year',ta:'ஆண்டுக்கு சுமார் ₹436-க்கு ₹2 லட்சம் ஆயுள் காப்பீடு',hi:'लगभग ₹436 सालाना में ₹2 लाख का जीवन बीमा'},
+ test:(P)=>(P.age>=18&&P.age<=50)?(P.bank?{level:'match',why:['age','bank']}:{level:'maybe',why:['age','needbank']}):null},
+{id:'apy',w:55,cash:0,cover:0,url:'https://www.npscra.nsdl.co.in',a:'a_bank',docs:['aadhaar','bank','mobile'],
+ name:{en:'Atal Pension Yojana',ta:'அடல் ஓய்வூதியத் திட்டம்',hi:'अटल पेंशन योजना'},
+ ben:{en:'Guaranteed pension of ₹1,000–5,000 a month after age 60',ta:'60 வயதுக்குப் பிறகு மாதம் ₹1,000–5,000 உறுதியான ஓய்வூதியம்',hi:'60 वर्ष के बाद ₹1,000–5,000 मासिक पक्की पेंशन'},
+ test:(P)=>(P.age>=18&&P.age<=40&&!P.tax)?(P.bank?{level:'match',why:['age','notax','bank']}:{level:'maybe',why:['age','needbank']}):null},
+{id:'sukanya',w:65,cash:0,cover:0,url:null,a:'a_bank',docs:['birth','aadhaar','bank'],
+ name:{en:'Sukanya Samriddhi Yojana',ta:'சுகன்யா சம்ரித்தி',hi:'सुकन्या समृद्धि योजना'},
+ ben:{en:'High-interest savings with tax benefits for your daughter\'s future',ta:'மகளின் எதிர்காலத்துக்கு உயர் வட்டி, வரிச்சலுகை சேமிப்பு',hi:'बेटी के भविष्य के लिए ऊँचे ब्याज और कर लाभ वाली बचत'},
+ test:(P)=>P.girl?{level:'match',why:['girl']}:null},
+{id:'mudra',w:75,cash:0,cover:0,url:'https://www.mudra.org.in',a:'a_bank',docs:['aadhaar','biz','bank','photo'],
+ name:{en:'PM Mudra Loan',ta:'பிஎம் முத்ரா கடன்',hi:'पीएम मुद्रा ऋण'},
+ ben:{en:'Collateral-free business loans up to ₹20 lakh (by tier)',ta:'அடமானம் இல்லாமல் ₹20 லட்சம் வரை தொழில் கடன் (படிநிலைப்படி)',hi:'बिना गारंटी ₹20 लाख तक का कारोबारी ऋण (श्रेणी अनुसार)'},
+ test:(P)=>P.age>=18?(['self','vendor','artisan'].includes(P.occ)?{level:'match',why:[{self:'self',vendor:'vendor',artisan:'artisan'}[P.occ]]}:(P.occ==='unemployed'?{level:'maybe',why:['start']}:null)):null},
+{id:'svanidhi',w:80,cash:0,cover:0,url:'https://pmsvanidhi.mohua.gov.in',a:'a_local',docs:['aadhaar','vendor','mobile','bank'],
+ name:{en:'PM SVANidhi (street vendors)',ta:'பிஎம் ஸ்வநிதி (தெருவோர வியாபாரிகள்)',hi:'पीएम स्वनिधि (रेहड़ी-पटरी)'},
+ ben:{en:'Collateral-free working-capital loans, with higher tiers on timely repayment',ta:'அடமானம் இல்லாத முதலீட்டுக் கடன்; சரியாகத் திருப்பிச் செலுத்தினால் அதிகத் தொகை',hi:'बिना गारंटी कार्यशील पूँजी ऋण; समय पर चुकाने पर अधिक राशि'},
+ test:(P)=>P.occ==='vendor'?{level:'match',why:['vendor']}:null},
+{id:'vishwakarma',w:80,cash:0,cover:0,url:'https://pmvishwakarma.gov.in',a:'a_local',docs:['aadhaar','trade','bank','mobile'],
+ name:{en:'PM Vishwakarma',ta:'பிஎம் விஸ்வகர்மா',hi:'पीएम विश्वकर्मा'},
+ ben:{en:'₹15,000 toolkit grant, paid skill training and low-interest loans for artisans',ta:'₹15,000 கருவித் தொகுப்பு உதவி, ஊக்கத்தொகையுடன் பயிற்சி, குறைந்த வட்டிக் கடன்',hi:'₹15,000 टूलकिट सहायता, वजीफ़े के साथ प्रशिक्षण और कम ब्याज पर ऋण'},
+ test:(P)=>(P.occ==='artisan'&&P.age>=18)?{level:'match',why:['artisan']}:null},
+{id:'standup',w:70,cash:0,cover:0,url:'https://www.standupmitra.in',a:'a_bank',docs:['aadhaar','community','biz','photo'],
+ name:{en:'Stand-Up India',ta:'ஸ்டாண்ட்-அப் இந்தியா',hi:'स्टैंड-अप इंडिया'},
+ ben:{en:'Bank loans of ₹10 lakh to ₹1 crore to start a new business',ta:'புதிய தொழில் தொடங்க ₹10 லட்சம் முதல் ₹1 கோடி வரை வங்கிக் கடன்',hi:'नया व्यवसाय शुरू करने के लिए ₹10 लाख से ₹1 करोड़ तक बैंक ऋण'},
+ test:(P)=>{if(P.age<18)return null;const g=(P.cat==='SC'||P.cat==='ST')?'scst':(P.gender==='F'?'female':null);if(!g)return null;if(P.occ==='self')return{level:'match',why:[g,'self']};if(P.occ==='unemployed')return{level:'maybe',why:[g,'start']};return null}},
+{id:'pmay',w:78,cash:0,cover:0,url:'https://pmaymis.gov.in',a:'a_local',docs:['aadhaar','income','house','bank'],
+ name:{en:'PM Awas Yojana (Urban 2.0 / Gramin)',ta:'பிஎம் ஆவாஸ் யோஜனா',hi:'पीएम आवास योजना'},
+ ben:{en:'Central assistance to build or buy a pucca home',ta:'பக்கா வீடு கட்ட அல்லது வாங்க மத்திய அரசு உதவி',hi:'पक्का मकान बनाने या खरीदने के लिए केंद्र की सहायता'},
+ test:(P,i)=>{if(P.pucca)return null;if(i<=300000)return{level:'match',why:['nohouse','income']};if(i<=1800000&&P.area==='urban')return{level:'maybe',why:['nohouse','urban','vary']};return null}},
+{id:'nsp',w:68,cash:0,cover:0,url:'https://scholarships.gov.in',a:'a_local',docs:['aadhaar','student','income','community','bank'],
+ name:{en:'National Scholarships (NSP)',ta:'தேசிய உதவித்தொகைகள்',hi:'राष्ट्रीय छात्रवृत्ति (NSP)'},
+ ben:{en:'Scholarships towards school and college fees',ta:'பள்ளி, கல்லூரிக் கட்டணத்துக்கான உதவித்தொகைகள்',hi:'स्कूल और कॉलेज की फ़ीस के लिए छात्रवृत्ति'},
+ test:(P,i)=>P.occ==='student'&&i<=250000?((P.cat==='SC'||P.cat==='ST')?{level:'match',why:['student','scst','income']}:{level:'maybe',why:['student','income','vary']}):null},
+{id:'eshram',w:62,cash:0,cover:0,url:'https://eshram.gov.in',a:'a_local',docs:['aadhaar','bank','mobile'],
+ name:{en:'e-Shram Card',ta:'இ-ஷ்ரம் அட்டை',hi:'ई-श्रम कार्ड'},
+ ben:{en:'Free national ID for unorganised workers, with ₹2 lakh accident cover',ta:'அமைப்புசாரா தொழிலாளர்களுக்கு இலவச தேசிய அடையாளம், ₹2 லட்சம் விபத்துக் காப்பு',hi:'असंगठित कामगारों के लिए मुफ़्त राष्ट्रीय पहचान, ₹2 लाख दुर्घटना कवर'},
+ test:(P)=>{if(P.age<16||P.age>59||P.pf||P.tax)return null;if(wl(P.occ))return{level:'match',why:['worker','nopf']};if(P.occ==='farmer')return{level:'maybe',why:['farm','nopf']};return null}},
+{id:'pmsym',w:58,cash:0,cover:0,url:'https://maandhan.in',a:'a_local',docs:['aadhaar','bank','mobile'],
+ name:{en:'PM Shram Yogi Maandhan',ta:'பிஎம் ஷ்ரம் யோகி மான்தன்',hi:'पीएम श्रम योगी मानधन'},
+ ben:{en:'₹3,000 a month pension after age 60 for unorganised workers',ta:'அமைப்புசாரா தொழிலாளர்களுக்கு 60 வயதுக்குப் பின் மாதம் ₹3,000 ஓய்வூதியம்',hi:'असंगठित कामगारों को 60 वर्ष के बाद ₹3,000 मासिक पेंशन'},
+ test:(P,i)=>(P.age>=18&&P.age<=40&&wl(P.occ)&&!P.pf&&!P.tax)?(i<=100000?{level:'match',why:['worker','income','nopf']}:(i<=250000?{level:'maybe',why:['worker','income','vary']}:null)):null},
+{id:'nsapOld',w:72,cash:2400,cover:0,url:'https://nsap.nic.in',a:'a_local',docs:['aadhaar','age','ration','bank'],
+ name:{en:'Old-Age Pension (NSAP)',ta:'முதியோர் ஓய்வூதியம் (NSAP)',hi:'वृद्धावस्था पेंशन (NSAP)'},
+ ben:{en:'Monthly old-age pension (central share ₹200–500; states add more)',ta:'மாத முதியோர் ஓய்வூதியம் (மத்திய பங்கு ₹200–500; மாநிலம் கூடுதலாக வழங்கும்)',hi:'मासिक वृद्धावस्था पेंशन (केंद्र का हिस्सा ₹200–500; राज्य अधिक जोड़ते हैं)'},
+ test:(P,i)=>P.age>=60?(P.ration==='pri'?{level:'match',why:['senior','pri']}:(i<=250000?{level:'maybe',why:['senior','income','vary']}:null)):null},
+{id:'nsapDis',w:66,cash:0,cover:0,url:'https://nsap.nic.in',a:'a_local',docs:['aadhaar','disab','ration','bank'],
+ name:{en:'Disability Pension (NSAP)',ta:'மாற்றுத்திறனாளி ஓய்வூதியம் (NSAP)',hi:'दिव्यांग पेंशन (NSAP)'},
+ ben:{en:'Monthly pension for persons with severe disability',ta:'கடுமையான மாற்றுத்திறன் உள்ளவர்களுக்கு மாத ஓய்வூதியம்',hi:'गंभीर दिव्यांगता वाले व्यक्तियों को मासिक पेंशन'},
+ test:(P)=>(P.disab&&P.ration==='pri')?{level:'maybe',why:['disab','pri','vary']}:null},
+{id:'udid',w:64,cash:0,cover:0,url:'https://www.swavlambancard.gov.in',a:'a_local',docs:['aadhaar','disab','photo'],
+ name:{en:'UDID Disability ID',ta:'தனித்துவ மாற்றுத்திறனாளி அடையாள அட்டை (UDID)',hi:'यूनिक दिव्यांग आईडी (UDID)'},
+ ben:{en:'One national ID that unlocks disability benefits and concessions',ta:'மாற்றுத்திறனாளி சலுகைகள் அனைத்துக்கும் ஒரே தேசிய அடையாள அட்டை',hi:'दिव्यांग लाभ और रियायतों के लिए एक राष्ट्रीय पहचान पत्र'},
+ test:(P)=>P.disab?{level:'match',why:['disab']}:null}
+];
+
+function evaluate(P){
+  const i=INC[P.income],out=[];
+  for(const s of SCHEMES){const r=s.test(P,i);if(r)out.push({s,level:r.level,why:r.why});}
+  out.sort((a,b)=>(a.level===b.level?0:a.level==='match'?-1:1)||b.s.w-a.s.w);
+  return out;
+}
+function totals(res){
+  let cash=0,cover=0;const seen=new Set();
+  for(const r of res){if(r.level!=='match')continue;cash+=r.s.cash;if(r.s.cover&&!seen.has(r.s.id)){cover+=r.s.cover;seen.add(r.s.id);}}
+  return{cash,cover,likely:res.filter(r=>r.level==='match').length,check:res.filter(r=>r.level==='maybe').length};
+}
+function docUsage(res){
+  const m={};for(const r of res)for(const d of r.s.docs)m[d]=(m[d]||0)+1;
+  return Object.entries(m).sort((a,b)=>b[1]-a[1]);
+}
+
+/* ---------------- UI ---------------- */
+const FIELDS=[
+{k:'age',type:'num'},{k:'gender',type:'seg',opts:['F','M','O']},{k:'state',type:'seg',opts:['TN','OT']},{k:'area',type:'seg',opts:['rural','urban']},
+{k:'occ',type:'sel',opts:['farmer','worker','self','artisan','vendor','student','salaried','homemaker','retired','unemployed']},
+{k:'income',type:'sel',opts:[0,1,2,3,4,5]},{k:'cat',type:'seg',opts:['GEN','OBC','SC','ST']},{k:'ration',type:'seg',opts:['pri','non','none']},
+{k:'bank',type:'yn'},{k:'pucca',type:'yn'},{k:'land',type:'yn'},{k:'tax',type:'yn'},{k:'pf',type:'yn'},{k:'girl',type:'yn'},{k:'disab',type:'yn'},{k:'lpg',type:'yn'}];
+const PERSONAS=[
+{k:'p1',v:{age:42,gender:'F',state:'TN',area:'rural',occ:'homemaker',income:0,cat:'OBC',ration:'pri',bank:false,pucca:false,land:false,tax:false,pf:false,girl:true,disab:false,lpg:false}},
+{k:'p2',v:{age:63,gender:'M',state:'TN',area:'rural',occ:'farmer',income:1,cat:'OBC',ration:'pri',bank:true,pucca:true,land:true,tax:false,pf:false,girl:false,disab:false,lpg:true}},
+{k:'p3',v:{age:27,gender:'M',state:'OT',area:'urban',occ:'vendor',income:0,cat:'SC',ration:'pri',bank:true,pucca:false,land:false,tax:false,pf:false,girl:false,disab:false,lpg:true}},
+{k:'p4',v:{age:20,gender:'F',state:'TN',area:'urban',occ:'student',income:1,cat:'SC',ration:'non',bank:true,pucca:true,land:false,tax:false,pf:false,girl:false,disab:false,lpg:true}}];
+
+let lang='en',P={...PERSONAS[0].v},bag={};
+const $=s=>document.querySelector(s);
+const t=k=>(T[lang][k]??T.en[k]??k);
+const nm=(o)=>o[lang]||o.en;
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const load=()=>{try{const d=JSON.parse(localStorage.getItem('haqdar')||'null');if(d){lang=d.lang||lang;P={...P,...d.P};bag=d.bag||{};}}catch(e){}};
+const save=()=>{try{localStorage.setItem('haqdar',JSON.stringify({lang,P,bag}))}catch(e){}};
+
+function renderStatic(){
+  document.documentElement.lang=lang;
+  $('#tag').textContent=t('tag');$('#sub').textContent=t('sub');$('#priv').textContent=t('priv');$('#disc').textContent=t('disclaimer');
+  $('#lang').innerHTML=[['en','English'],['ta','தமிழ்'],['hi','हिन्दी']].map(([c,n])=>`<button data-lang="${c}" class="${c===lang?'on':''}">${n}</button>`).join('');
+  $('#demo').innerHTML=`<b>${t('demo')}</b>`+PERSONAS.map((p,i)=>`<button data-persona="${i}">${t(p.k)}</button>`).join('');
+}
+function renderForm(){
+  let h=`<h2>${t('aboutYou')}</h2>`;
+  for(const F of FIELDS){
+    h+=`<div class="field"><label>${t('f_'+F.k)}</label>`;
+    if(F.type==='num')h+=`<input type="number" inputmode="numeric" min="1" max="110" data-num="${F.k}" value="${P[F.k]}">`;
+    else if(F.type==='sel'){h+=`<select data-sel="${F.k}">`+F.opts.map(o=>`<option value="${o}" ${String(P[F.k])===String(o)?'selected':''}>${F.k==='income'?t('inc'+o):t('o_occ_'+o)}</option>`).join('')+`</select>`;}
+    else{const opts=F.type==='yn'?[true,false]:F.opts;
+      h+=`<div class="seg">`+opts.map(o=>`<button type="button" data-k="${F.k}" data-v="${o}" class="${String(P[F.k])===String(o)?'on':''}">${F.type==='yn'?t(o?'yes':'no'):t('o_'+F.k+'_'+o)}</button>`).join('')+`</div>`;}
+    if(T.en['h_'+F.k])h+=`<div class="hint">${t('h_'+F.k)}</div>`;
+    h+=`</div>`;
+  }
+  $('#form').innerHTML=h;
+}
+let RES=[];
+function summaryText(){
+  const lines=RES.filter(r=>r.level==='match').map(r=>'• '+nm(r.s.name)+' — '+nm(r.s.ben));
+  return t('shareHead')+'\n'+lines.join('\n');
+}
+function renderResults(){
+  RES=evaluate(P);const tt=totals(RES);
+  if(!RES.length){$('#results').innerHTML=`<div class="empty">${t('noRes')}</div>`;return;}
+  let h=`<h2>${t('resTitle')}</h2><div class="stats">
+   <div class="stat hl"><b>${tt.likely}</b><span>${t('stat_likely')}</span></div>
+   <div class="stat"><b>${tt.check}</b><span>${t('stat_check')}</span></div>
+   <div class="stat"><b>${inr(tt.cash)}</b><span>${t('stat_cash')}</span></div>
+   <div class="stat"><b>${inr(tt.cover)}</b><span>${t('stat_cover')}</span></div></div>`;
+  h+=`<div class="tools"><button class="btn pri" data-act="share">${t('share')}</button><button class="btn" data-act="print">${t('print')}</button><button class="btn" data-act="copy">${t('copy')}</button></div>`;
+  RES.forEach((r,idx)=>{
+    const s=r.s;
+    h+=`<article class="card ${r.level}"><div class="top"><h3>${nm(s.name)}</h3><span class="badge">${t(r.level==='match'?'likely':'check')}</span></div>
+    <p class="ben">${nm(s.ben)}</p>
+    <div class="chips">${r.why.map(w=>`<span class="chip">${t('r_'+w)}</span>`).join('')}</div>
+    <details><summary>${t('docsApply')}</summary>
+      <ul>${s.docs.map(d=>`<li>${t('d_'+d)}</li>`).join('')}</ul>
+      <div>${t('applyAt')}: ${t(s.a)}${s.url?` · <a href="${s.url}" target="_blank" rel="noopener">${t('openSite')} ↗</a>`:''}</div>
+    </details>
+    <div class="actions"><button class="btn sm" data-say="${idx}">${t('listen')}</button></div></article>`;
+  });
+  // document bag
+  const usage=docUsage(RES);const have=usage.filter(([d])=>bag[d]).length;
+  h+=`<div class="panel"><h2>${t('bagTitle')}</h2><div class="hint">${t('bagSub')}</div>
+   <div class="bar"><i style="width:${Math.round(100*have/usage.length)}%"></i></div><div class="hint" style="margin:-6px 0 8px">${have}/${usage.length} ${t('ready')}</div>`+
+   usage.map(([d,n])=>`<label class="doc"><input type="checkbox" data-doc="${d}" ${bag[d]?'checked':''}><span>${t('d_'+d)}</span><small>${n} ${t('bagUsed')}</small></label>`).join('')+`</div>`;
+  // roadmap
+  const top=usage.slice(0,3).map(([d])=>t('d_'+d)).join(', ');
+  const order=RES.filter(r=>r.level==='match'&&r.s.id!=='jandhan').slice(0,5).map(r=>nm(r.s.name)).join(' → ');
+  h+=`<div class="panel"><h2>${t('roadTitle')}</h2><ol class="road"><li>${t(P.bank?'s1_ok':'s1_bank')}</li><li>${t('s2')} <b>${top}</b></li><li>${t('s3')} <b>${order||'—'}</b></li></ol></div>`;
+  $('#results').innerHTML=h;
+}
+function renderAll(){renderStatic();renderForm();renderResults();save();}
+
+document.addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.lang){lang=b.dataset.lang;renderAll();return;}
+  if(b.dataset.persona!==undefined){P={...PERSONAS[+b.dataset.persona].v};renderAll();return;}
+  if(b.dataset.k){const k=b.dataset.k,f=FIELDS.find(x=>x.k===k);P[k]=f.type==='yn'?b.dataset.v==='true':b.dataset.v;
+    b.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));renderResults();save();return;}
+  if(b.dataset.say!==undefined){const r=RES[+b.dataset.say];speak(nm(r.s.name)+'. '+nm(r.s.ben));return;}
+  const a=b.dataset.act;
+  if(a==='print')window.print();
+  if(a==='share')window.open('https://wa.me/?text='+encodeURIComponent(summaryText()),'_blank','noopener');
+  if(a==='copy'){(navigator.clipboard?navigator.clipboard.writeText(summaryText()):Promise.reject()).then(()=>{b.textContent=t('copied')}).catch(()=>{});}
+});
+document.addEventListener('input',e=>{
+  const n=e.target.dataset.num;if(n){const v=parseInt(e.target.value,10);P[n]=isNaN(v)?0:Math.max(0,Math.min(110,v));renderResults();save();}
+});
+document.addEventListener('change',e=>{
+  const s=e.target.dataset.sel;if(s){P[s]=s==='income'?+e.target.value:e.target.value;renderResults();save();}
+  const d=e.target.dataset.doc;if(d){bag[d]=e.target.checked;renderResults();save();}
+});
+function speak(text){
+  if(!('speechSynthesis' in window))return;
+  speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);
+  u.lang={en:'en-IN',ta:'ta-IN',hi:'hi-IN'}[lang];u.rate=.9;speechSynthesis.speak(u);
+}
+if(typeof document!=='undefined'&&document.querySelector){load();renderAll();}
+if(typeof module!=='undefined')module.exports={SCHEMES,evaluate,totals,docUsage,T,PERSONAS};
+</script>
+</body>
+</html>
